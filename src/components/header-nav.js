@@ -10,7 +10,6 @@ class HeaderNav extends LitElement {
     super();
     this.isDropdownOpen = false;
     this.selectedLanguage = 'EN';
-    this.languages = ['EN', 'TW', 'JP', 'ES', 'DE', 'FR'];
   }
 
   static styles = css`
@@ -32,10 +31,12 @@ class HeaderNav extends LitElement {
       color: #fff;
       display: flex;
       align-items: center;
+      text-decoration: none;
     }
 
-    .logo img {
+    .logo-svg {
       height: 40px;
+      width: 120px;
     }
 
     .nav-container {
@@ -63,77 +64,25 @@ class HeaderNav extends LitElement {
       border-radius: 4px;
       text-decoration: none;
       font-weight: bold;
-      border: 1px solid #fff;
-      transition: all 0.3s ease;
-    }
-
-    .web360-btn:hover {
-      background-color: #000;
-      color: #fff;
-      border: 1px solid #fff;
     }
 
     .language-select {
-      position: relative;
       color: #fff;
-      cursor: pointer;
-    }
-
-    .language-button {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 4px 8px;
-      border: none;
-      background: none;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .dropdown-content {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background-color: #fff;
-      min-width: 100px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      border-radius: 4px;
-      display: none;
-      z-index: 1000;
-    }
-
-    .dropdown-content.show {
-      display: block;
-    }
-
-    .dropdown-item {
-      color: #000;
-      padding: 8px 12px;
-      text-decoration: none;
-      display: block;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .dropdown-item:hover {
-      background-color: #f0f0f0;
     }
   `;
-
-  toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
-  }
-
-  selectLanguage(lang) {
-    this.selectedLanguage = lang;
-    this.isDropdownOpen = false;
-  }
 
   render() {
     return html`
       <div class="header-container">
         <a href="/" class="logo">
-          <img src="https://placehold.co/120x40" alt="Logo">
+          <svg class="logo-svg" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" x="0" y="0" fill="#ff0000"/>
+            <rect width="70" height="12" x="45" y="5" fill="#ffffff"/>
+            <rect width="50" height="12" x="45" y="23" fill="#ffffff"/>
+          </svg>
         </a>
         
         <div class="nav-container">
@@ -144,19 +93,9 @@ class HeaderNav extends LitElement {
           <a href="/support" class="nav-item">TECH SUPPORT</a>
           <a href="/contact" class="nav-item">CONTACT US</a>
           <a href="/web360" class="web360-btn">WEB360</a>
-          
           <div class="language-select">
-            <button class="language-button" @click="${this.toggleDropdown}">
-              <span>🌐</span>
-              <span>${this.selectedLanguage}</span>
-            </button>
-            <div class="dropdown-content ${this.isDropdownOpen ? 'show' : ''}">
-              ${this.languages.map(lang => html`
-                <div class="dropdown-item" @click="${() => this.selectLanguage(lang)}">
-                  ${lang}
-                </div>
-              `)}
-            </div>
+            <span>🌐</span>
+            <span>TW</span>
           </div>
         </div>
       </div>
