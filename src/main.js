@@ -1,18 +1,13 @@
 import { LitElement, html, css } from 'lit';
 import './components/header-nav.js';
 import './components/banner-carousel.js';
+import './components/solution-section.js';
 
 class LayoutApp extends LitElement {
   static styles = css`
     :host {
       display: block;
       min-height: 100vh;
-    }
-
-    .solution {
-      background-color: #d0d0d0;
-      padding: 80px;
-      text-align: center;
     }
 
     .news {
@@ -38,7 +33,7 @@ class LayoutApp extends LitElement {
     return html`
       <header-nav></header-nav>
       <banner-carousel></banner-carousel>
-      <div class="solution">Solution</div>
+      <solution-section></solution-section>
       <div class="news">News</div>
       <div class="event">Event</div>
       <div class="footer">Footer</div>
