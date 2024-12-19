@@ -10,6 +10,7 @@ class HeaderNav extends LitElement {
     super();
     this.isDropdownOpen = false;
     this.selectedLanguage = 'EN';
+    this.languages = ['EN', 'TW', 'JP', 'ES', 'DE', 'FR'];
   }
 
   static styles = css`
@@ -67,12 +68,60 @@ class HeaderNav extends LitElement {
     }
 
     .language-select {
+      position: relative;
       color: #fff;
+      cursor: pointer;
+    }
+
+    .language-button {
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      padding: 4px 8px;
+      border: none;
+      background: none;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #fff;
+      min-width: 100px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      border-radius: 4px;
+      display: none;
+      z-index: 1000;
+    }
+
+    .dropdown-content.show {
+      display: block;
+    }
+
+    .dropdown-item {
+      color: #000;
+      padding: 8px 12px;
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f0f0f0;
     }
   `;
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  selectLanguage(lang) {
+    this.selectedLanguage = lang;
+    this.isDropdownOpen = false;
+  }
 
   render() {
     return html`
@@ -93,9 +142,19 @@ class HeaderNav extends LitElement {
           <a href="/support" class="nav-item">TECH SUPPORT</a>
           <a href="/contact" class="nav-item">CONTACT US</a>
           <a href="/web360" class="web360-btn">WEB360</a>
+          
           <div class="language-select">
-            <span>🌐</span>
-            <span>TW</span>
+            <button class="language-button" @click="${this.toggleDropdown}">
+              <span>🌐</span>
+              <span>${this.selectedLanguage}</span>
+            </button>
+            <div class="dropdown-content ${this.isDropdownOpen ? 'show' : ''}">
+              ${this.languages.map(lang => html`
+                <div class="dropdown-item" @click="${() => this.selectLanguage(lang)}">
+                  ${lang}
+                </div>
+              `)}
+            </div>
           </div>
         </div>
       </div>
