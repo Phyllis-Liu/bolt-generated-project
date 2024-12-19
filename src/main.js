@@ -4,6 +4,7 @@ import './components/banner-carousel.js';
 import './components/solution-section.js';
 import './components/news-section.js';
 import './components/event-section.js';
+import './components/divider-line.js';
 import './components/footer-section.js';
 
 class LayoutApp extends LitElement {
@@ -21,6 +22,7 @@ class LayoutApp extends LitElement {
       <solution-section></solution-section>
       <news-section></news-section>
       <event-section></event-section>
+      <divider-line></divider-line>
       <footer-section></footer-section>
     `;
   }
