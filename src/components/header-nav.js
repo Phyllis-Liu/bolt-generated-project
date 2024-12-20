@@ -65,6 +65,14 @@ class HeaderNav extends LitElement {
       border-radius: 4px;
       text-decoration: none;
       font-weight: bold;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .web360-btn:hover {
+      background-color: #000;
+      color: #fff;
+      border: 1px solid #fff;
     }
 
     .language-select {
